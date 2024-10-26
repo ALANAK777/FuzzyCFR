@@ -80,8 +80,8 @@ elif st.session_state.page == 'vendor_selection':
             st.stop()
 
     # Load CSV files (dummy paths, replace with actual paths)
-    vendordata = pd.read_csv('C:\\Users\\vilsons\\Desktop\\Ini Projects\\FuzzyCFR\\vendor_data.csv')
-    technicalrating = pd.read_csv('C:\\Users\\vilsons\\Desktop\\Ini Projects\\FuzzyCFR\\tech_rating.csv')
+    vendordata = pd.read_csv('vendor_data.csv')
+    technicalrating = pd.read_csv('tech_rating.csv')
 
     # Clean column names
     vendordata.columns = vendordata.columns.str.strip()
