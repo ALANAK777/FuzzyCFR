@@ -142,10 +142,13 @@ elif st.session_state.page == 'vendor_selection':
         ranked_vendors['FACADE VENDOR'] = vendor_names.iloc[ranked_vendors.index]
         ranked_vendors['Factory Location'] = factory_locations.iloc[ranked_vendors.index]
 
-        # Get the top vendors (you can adjust how many vendors to display)
-        top_vendors = ranked_vendors.head(2)  # Adjust to show more vendors if needed
-
-        for index, vendor in top_vendors.iterrows():
+        # Display all vendors sorted by ranking score
+        st.subheader("Ranked Vendors (Best to Worst)")
+        
+        # Add a count to keep track of displayed vendors
+        vendor_count = 1
+        
+        for index, vendor in ranked_vendors.iterrows():
             # Create a Streamlit container for vendor information
             with st.container():
                 # Create two columns for the image and the details
@@ -157,7 +160,7 @@ elif st.session_state.page == 'vendor_selection':
 
                 # Vendor details in the second column
                 with col2:
-                    st.subheader(vendor['FACADE VENDOR'])
+                    st.subheader(f"Rank #{vendor_count}: {vendor['FACADE VENDOR']}")
                     st.write(f"**Factory Location:** {vendor['Factory Location']}")
                     st.write(f"**Production Capacity:** {vendor['Production Capacity']}")
                     st.write(f"**Turn Over:** {vendor['Turn Over']}")
@@ -168,6 +171,7 @@ elif st.session_state.page == 'vendor_selection':
 
                 # Divider between vendors
                 st.divider()
+                vendor_count += 1
 
 elif st.session_state.page == 'boq':
     # BOQ Page content
@@ -250,4 +254,3 @@ elif st.session_state.page == 'boq':
             st.subheader("Extracted Features")
             for feature, value in features.items():
                 st.write(f"**{feature}:** {value}")
-
